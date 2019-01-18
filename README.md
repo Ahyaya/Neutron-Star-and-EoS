@@ -1,4 +1,4 @@
-# Love-Number-k2
+# M-R-I-Love
 codes for computing non-rotating neutron stars, including:
 1. gravitational mass M
 2. radius R
