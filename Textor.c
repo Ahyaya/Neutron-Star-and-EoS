@@ -274,7 +274,7 @@ int ScanMode()
 	if(Data.Mmax>2.01)
 	{
 		fprintf(Pout,"%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",Data.Ksym,Data.Jsym,Data.J0,Data.Mmax,Data.R14,Data.Lambda14);
-		sprintf(filename,".\\Results\\%ld.txt",++Rec);
+		sprintf(filename,"./Results/%ld.txt",++Rec);
 		Xout=fopen(filename,"w");
 		for(pf=0;pf<n;pf++)
 		{
