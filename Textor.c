@@ -1,6 +1,6 @@
-#include<math.h>
-#include<stdio.h>
-#include<stdlib.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define pi 3.14159265358979
 #define XM 939.0
@@ -55,7 +55,6 @@ double cp;
 			return 1;
 		}
 	}
-	printf("Warning: linear interpolation error 2\n");
 	return 0;
 }
 
@@ -74,7 +73,6 @@ cp=pow(10,logp);
 return(cp);
 }
 }
-printf("Warning:E2p interpolation error\n");
 return 0;
 }
 
@@ -257,10 +255,10 @@ int ScanMode()
 		{
 			Data.Mmax=lastM;
 			break;
-		}else if((temp_M-lastM>0.04)||fabs(temp_R-lastR)>0.2)
+		}else if((temp_M-lastM>0.02)||fabs(temp_R-lastR)>0.10)
 		{
 			dE=dE*0.5;
-		}else if((temp_M-lastM<0.02)&&fabs(temp_R-lastR)<0.1)
+		}else if((temp_M-lastM<0.01)&&fabs(temp_R-lastR)<0.05)
 		{
 			dE=dE*2;
 		}
@@ -273,7 +271,7 @@ int ScanMode()
 		}
 		lastM=temp_M;lastR=temp_R,lastLambda=temp_Lambda;
 	}
-	if(Data.Mmax>2.0)
+	if(Data.Mmax>2.01)
 	{
 		fprintf(Pout,"%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",Data.Ksym,Data.Jsym,Data.J0,Data.Mmax,Data.R14,Data.Lambda14);
 		sprintf(filename,".//Results//%ld.txt",++Rec);
@@ -292,9 +290,9 @@ int PtInitial()
 {
 	FILE *inf;
 	int n;
-	if((inf=fopen("Pt.dat","r"))==NULL)
+	if((inf=fopen("PtData","r"))==NULL)
 	{
-		printf("missing file Pt.dat at root path!\nCaution: this *.exe file cannot run independently.");
+		printf("missing file PtData at root path!\nCaution: this *.exe file cannot run independently.");
 		return -1;
 	}
 	PtLen=0;
@@ -456,11 +454,11 @@ int main()
 	printf("Initiating EoS generator...\n");
 	PtInitial();
 	printf("\nComputing...\n\n");
-	for(J0=-400;J0<401;J0=J0+200)
+	for(J0=-400;J0<401;J0=J0+100)
 	{
-		for(Jsym=-200;Jsym<801;Jsym=Jsym+200)
+		for(Jsym=-200;Jsym<801;Jsym=Jsym+100)
 		{
-			for(Ksym=-400;Ksym<101;Ksym=Ksym+200)
+			for(Ksym=-400;Ksym<101;Ksym=Ksym+100)
 			{
 				loadEoS(Ksym,Jsym,J0);
 				temp_Ksym=Ksym;temp_Jsym=Jsym;temp_J0=J0;
