@@ -1,3 +1,11 @@
 # Love-Number-k2
-codes for computing tidal love number k2 for non-rotating neutron stars
-The current version for AScanRM uses both testR and RK-4 method to reduce the deviation, to correctly use AScanRM you are supposed to unzip AScanRM.zip then read the readme.txt inside. The AScanRM.exe is compiled under Win7/10 gcc compiler, so you should compile the *.c file in c_Source document if you want to use AScanRM in other environment.
+codes for computing non-rotating neutron stars, including:
+1. gravitational mass M
+2. radius R
+3. dimensionless moment of inertia  I
+4. dimensionless tidal deformability  Lambda
+5. baryon mass  Ma
+6. pure mass  Mp
+
+The current version Textor uses both testR-3 and testR-2 method to iterate.
+Containing parameterized asymmetric nucleonic matter equation of state (ANM EOS) generator, the computation outputs are saved in the path .\Results\*.txt, while the three parameters are saved in .\EoSpara.txt in the root path.
