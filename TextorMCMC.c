@@ -28,7 +28,7 @@ int length_EOS=0,loopTOV=1;
 struct Results
 {
 	int dataLength;
-	double Ksym,Jsym,J0,Mmax,R14,Lambda14;
+	double Ksym,Jsym,J0,Mmax,R14,Lambda14,I14;
 	double Ec[400],R[400],M[400],I[400],Lambda[400],Ma[400],Mp[400];
 };
 
@@ -494,7 +494,7 @@ double getLih_2()
 //Working Mode: Automatically scan
 int ScanMode()
 {
-	double Ec=1e18,dE=5e16,lastM,lastR,lastLambda,Lih;
+	double Ec=1e18,dE=5e16,lastM,lastR,lastLambda,lastI,Lih;
 	int n=0,pf=0;
 	
 	Data.dataLength=0;
@@ -508,7 +508,7 @@ int ScanMode()
 	Data.Ksym=temp_Ksym;Data.Jsym=temp_Jsym;Data.J0=temp_J0;
 	Data.Ec[0]=Ec;Data.M[0]=temp_M;Data.R[0]=temp_R;Data.I[0]=temp_I;Data.Lambda[0]=temp_Lambda;(Data.dataLength)++;
 	n++;
-	lastM=temp_M;lastR=temp_R;
+	lastM=temp_M;lastR=temp_R,lastLambda=temp_Lambda,lastI=temp_I;
 	while(Ec<E_core)
 	{
 		Ec=Ec+dE;
@@ -530,13 +530,14 @@ int ScanMode()
 		{
 			Data.R14=lastR+(1.4-lastM)/(temp_M-lastM)*(temp_R-lastR);
 			Data.Lambda14=lastLambda+(1.4-lastM)/(temp_M-lastM)*(temp_Lambda-lastLambda);
+			Data.I14=lastI+(1.4-lastM)/(temp_M-lastM)*(temp_I-lastI);
 		}
-		lastM=temp_M;lastR=temp_R,lastLambda=temp_Lambda;
+		lastM=temp_M;lastR=temp_R,lastLambda=temp_Lambda,lastI=temp_I;
 	}
 	if(Data.Mmax>2.01)
 	{
 		Lih=getLih_1()*getLih_2();
-		fprintf(Pout,"%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",Data.Ksym,Data.Jsym,Data.J0,Lih,Data.Mmax,Data.R14,Data.Lambda14);
+		fprintf(Pout,"%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",Data.Ksym,Data.Jsym,Data.J0,Lih,Data.Mmax,Data.R14,Data.I14,Data.Lambda14);
 		Rec++;
 	}
 	return 1;
@@ -710,11 +711,11 @@ int main()
 	printf("Initiating EoS generator...\n");
 	PtInitial();
 	printf("\nComputing...\n\n");
-	for(J0=-400;J0<401;J0=J0+100)
+	for(J0=-400;J0<401;J0=J0+4)
 	{
-		for(Jsym=-200;Jsym<801;Jsym=Jsym+100)
+		for(Jsym=-200;Jsym<801;Jsym=Jsym+5)
 		{
-			for(Ksym=-400;Ksym<101;Ksym=Ksym+100)
+			for(Ksym=-400;Ksym<101;Ksym=Ksym+5)
 			{
 				loadEoS(Ksym,Jsym,J0);
 				temp_Ksym=Ksym;temp_Jsym=Jsym;temp_J0=J0;
