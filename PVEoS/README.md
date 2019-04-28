@@ -1,7 +1,7 @@
 # Piecewise Velocity Equation of States
 ### Auto-generator of EoS tables for neutron star investigation
 ## 主程序
-+主程序是Launch（分别给了Linux版的和Windows版的），默认设置是生成100个均匀随机声速的物态，默认的声速参数与ANM EoS相同，随机种子需要调用系统时间。
++ 主程序是Launch（分别给了Linux版的和Windows版的），默认设置是生成100个均匀随机声速的物态，默认的声速参数与ANM EoS相同，随机种子需要调用系统时间。
 
 ## 配置文件
 +EoSconfig.csv是配置文件，在此文件丢失或者不可访问的情况下使用默认设定。
