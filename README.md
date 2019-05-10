@@ -1,14 +1,15 @@
 # Neutron Star and Equation of State
+
 ### These codes are dedicated to compute non-rotating neutron stars with logarithmic equation of states. 
 
 The available outputs in each project may include:
 
-+ 1. gravitational mass M
-+ 2. radius R
-+ 3. dimensionless moment of inertia  I
-+ 4. dimensionless tidal deformability  Lambda
-+ 5. baryon mass  Ma
-+ 6. pure mass  Mp
++ gravitational mass M
++ radius R
++ dimensionless moment of inertia  I
++ dimensionless tidal deformability  Lambda
++ baryon mass  Ma
++ pure mass  Mp
 
 The current version of all projects use both testR-3 and testR-2 method to iterate instead of Runge-Kutta methods.
 
