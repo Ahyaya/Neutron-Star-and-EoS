@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define pi 3.14159265358979
 #define Mscale 2.033931261665867e5
